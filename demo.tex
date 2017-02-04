@@ -1,0 +1,323 @@
+%% References: http://users.eecs.northwestern.edu/~jesse/code/beamer-examples/
+%% https://github.com/matze/mtheme/
+%% Set beamer template but no theme
+\documentclass[xetex]{beamer}
+
+%% Some essential packages
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage[quiet]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{url}
+
+%% Some non-essential packages 
+\usepackage{appendixnumberbeamer}
+\usepackage{pgfplots}
+
+
+%% SETTINGS
+
+\frenchspacing
+\unitlength=0.01\textwidth
+\thicklines
+\urlstyle{sf}
+\graphicspath{{images/}}
+
+%% Colors : use capital letters because xcolor has problems reading f
+%%  Pallet from https://elementary.io/brand
+\def\blueberry{3892A0}
+\def\strawberry{DA4D45}
+\def\morange{F37329}
+\def\banana{FBD25D}
+\def\lime{93D844}
+\def\grape{8A4EBF}
+\def\mwhite{FFFFFF}
+\def\mblack{333333}
+\def\soothingwhite{FAFCF8}
+
+\definecolor{Blueberry}{HTML}{\blueberry}
+\definecolor{Strawberry}{HTML}{\strawberry}
+\definecolor{MOrange}{HTML}{\morange}
+\definecolor{Banana}{HTML}{\banana}
+\definecolor{Lime}{HTML}{\lime}
+\definecolor{Grape}{HTML}{\grape}
+\definecolor{MWhite}{HTML}{\mwhite}
+\definecolor{MBlack}{HTML}{\mblack}
+\definecolor{SWhite}{HTML}{\soothingwhite}
+
+%% Set colors
+\setbeamercolor{title}{fg=Blueberry}
+\setbeamercolor{frametitle}{fg=Blueberry}
+\setbeamercolor{normal text}{fg=MBlack}
+
+\setbeamercolor{block title}{fg=Blueberry}
+\setbeamercolor{block body}{fg=MBlack}
+\setbeamercolor{block title alerted}{fg=Strawberry}
+\setbeamercolor{block title example}{fg=Lime}
+
+\setbeamercolor{alerted text}{fg=Strawberry}
+\setbeamercolor{itemize item}{fg=MBlack}
+\setbeamercolor{enumerate item}{fg=MBlack}
+\setbeamercolor{description item}{fg=Grape}
+
+\setbeamercolor{section in toc}{fg=MBlack}
+
+
+\setbeamercolor{background canvas}{
+        bg=SWhite
+ }
+
+
+%% Set fonts
+\defaultfontfeatures{
+    Mapping=tex-text,
+    Scale=MatchLowercase,
+}
+\setsansfont{Optima}
+\setmonofont{Monaco}
+
+%% Set templates for various elements
+
+\setbeamertemplate{frametitle}
+  {\begin{centering}\smallskip
+   \insertframetitle\par
+   \smallskip\end{centering}}
+
+\setbeamertemplate{itemize item}{$\bullet$}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[text line]{%
+    \hfill\strut{%
+        \scriptsize\sf\color{black!60}%
+        \quad\insertframenumber%
+    }%
+    \hfill%
+}
+
+
+
+%% Title and authors
+\title{Demo slide in Beamer}
+\subtitle{A minimal theme}
+\date{\today}
+\author{\underline{Adarsh Barik}}
+\institute{Purdue University}
+
+
+%% DOCUMENT BEGINS HERE
+\begin{document}
+
+\maketitle
+
+%% Toc in first frame - takes sections and not frames
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+%% Just for reference - it doesn't create a new slide
+\section{Introduction}
+
+\begin{frame}[fragile]{My theme}
+
+  The  theme is a Beamer template with minimal visual noise inspired by template by Jesse A. Tov and Metropolis theme.
+
+
+  Note, that you have to have Optima and Monaco font and XeTeX
+  installed to enjoy this wonderful typography. This theme has been compiled using:
+  \begin{verbatim}
+  xelatex -halt-on-error -interaction=nonstopmode demo
+  \end{verbatim} 
+\end{frame}
+
+\begin{frame}[fragile]{Sections}
+  Sections group slides of the same topic
+
+  \begin{verbatim}    \section{Elements}\end{verbatim}
+
+
+\end{frame}
+
+
+\section{Elements}
+
+\begin{frame}[fragile]{Typography}
+      \begin{verbatim}The theme provides sensible defaults to
+\emph{emphasize} text, \alert{accent} parts
+or show \textbf{bold} results.\end{verbatim}
+
+  \begin{center}becomes\end{center}
+
+  The theme provides sensible defaults to \emph{emphasize} text,
+  \alert{accent} parts or show \textbf{bold} results.
+\end{frame}
+
+\begin{frame}{Font feature test}
+  \begin{itemize}
+    \item Regular
+    \item \textit{Italic}
+    \item \textsc{SmallCaps}
+    \item \textbf{Bold}
+    \item \textbf{\textit{Bold Italic}}
+    \item \textbf{\textsc{Bold SmallCaps}}
+    \item \texttt{Monospace}
+    \item \texttt{\textit{Monospace Italic}}
+    \item \texttt{\textbf{Monospace Bold}}
+    \item \texttt{\textbf{\textit{Monospace Bold Italic}}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lists}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+      Items
+      \begin{itemize}
+        \item Milk \item Eggs \item Potatos
+      \end{itemize}
+
+    \column{0.33\textwidth}
+      Enumerations
+      \begin{enumerate}
+        \item First, \item Second and \item Last.
+      \end{enumerate}
+
+    \column{0.33\textwidth}
+      Descriptions
+      \begin{description}
+        \item[PowerPoint] Meeh. \item[Beamer] Yeeeha.
+      \end{description}
+  \end{columns}
+\end{frame}
+\begin{frame}{Animation}
+  \begin{itemize}[<+- | alert@+>]
+    \item \alert<4>{This is\only<4>{ really} important}
+    \item Now this
+    \item And now this
+  \end{itemize}
+\end{frame}
+\begin{frame}{Figures}
+  \begin{figure}
+    \newcounter{density}
+    \setcounter{density}{20}
+    \begin{tikzpicture}
+      \def\couleur{alerted text.fg}
+      \path[coordinate] (0,0)  coordinate(A)
+                  ++( 90:5cm) coordinate(B)
+                  ++(0:5cm) coordinate(C)
+                  ++(-90:5cm) coordinate(D);
+      \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
+      \foreach \x in {1,...,40}{%
+          \pgfmathsetcounter{density}{\thedensity+20}
+          \setcounter{density}{\thedensity}
+          \path[coordinate] coordinate(X) at (A){};
+          \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+                              -- (C) coordinate[pos=.10](B)
+                              -- (D) coordinate[pos=.10](C)
+                              -- (X) coordinate[pos=.10](D);
+          \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
+      }
+    \end{tikzpicture}
+    \caption{Rotated square from
+    \href{http://www.texample.net/tikz/examples/rotated-polygons/}{texample.net}.}
+  \end{figure}
+\end{frame}
+\begin{frame}{Tables}
+  \begin{table}
+    \caption{Largest cities in the world (source: Wikipedia)}
+    \begin{tabular}{@{} lr @{}}
+      \toprule
+      City & Population\\
+      \midrule
+      Mexico City & 20,116,842\\
+      Shanghai & 19,210,000\\
+      Peking & 15,796,450\\
+      Istanbul & 14,160,467\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+\begin{frame}{Blocks}
+  Three different block environments are pre-defined and may be styled with an
+  optional background color.
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+    \column{0.5\textwidth}
+
+      %\metroset{block=fill}
+
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+  \end{columns}
+\end{frame}
+\begin{frame}{Math}
+  \begin{equation*}
+    e = \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n
+  \end{equation*}
+\end{frame}
+
+
+
+\begin{frame}{References}
+  Some references to showcase \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Summary}
+
+  Get the source of this template and the demo presentation from
+
+  \begin{center}\url{github.com/Adarsh-Barik}\end{center}
+
+
+
+\end{frame}
+
+\begin{frame}
+  \centering Questions?
+\end{frame}
+
+%\appendix
+
+\begin{frame}[fragile]{Backup slides}
+  Sometimes, it is useful to add slides at the end of your presentation to
+  refer to during audience questions.
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+
+  \bibliographystyle{apalike}
+  \bibliography{demo}
+
+\end{frame}
+
+\end{document}
